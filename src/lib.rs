@@ -5,6 +5,7 @@
 #![reexport_test_harness_main = "test_main"]
 
 use core::panic::PanicInfo;
+use ansi_rgb::{ Foreground, Background, green, red, black, white };
 
 pub mod serial;
 pub mod vga_buffer;
@@ -16,9 +17,9 @@ pub trait Testable {
 impl <T> Testable for T where T: Fn()
 {
     fn run(&self) {
-        serial_print!("{}...\t", core::any::type_name::<T>());
+        serial_print!("{}...\t", core::any::type_name::<T>().fg(black()).bg(white()));
         self();
-        serial_println!("[ok]");
+        serial_println!("{}","[ok]".fg(green()));
     }
 }
 
@@ -32,7 +33,7 @@ pub fn test_runner(tests: &[&dyn Testable]) {
 }
 
 pub fn test_panic_handler(info: &PanicInfo) -> ! {
-    serial_println!("[failed]\n");
+    serial_println!("{}\n", "[failed]".fg(red()));
     serial_println!("Error: {}\n", info);
     exit_qemu(QemuExitCode::Failed);   
     loop{}
