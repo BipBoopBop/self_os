@@ -10,10 +10,18 @@ use self_os::println;
 #[no_mangle]
 pub extern "C" fn _start() -> ! {
     println!("Hello World {}", "!");
+    self_os::init();
+
+    fn stack_overflow() {
+        stack_overflow();
+    }
+
+    stack_overflow();
 
     #[cfg(test)]
     test_main();
 
+    println!("it did not crash");
     loop {}
 }
 
