@@ -45,6 +45,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "pic8259"
+version = "0.10.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "761e92187c0fc0c3db574a512609df5fd99b0ee237132858281d68a0cdc189c8"
+dependencies = [
+ "x86_64",
+]
+
+[[package]]
 name = "rgb"
 version = "0.8.36"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -66,6 +75,7 @@ dependencies = [
  "ansi_rgb",
  "bootloader",
  "lazy_static",
+ "pic8259",
  "spin",
  "uart_16550",
  "volatile 0.2.7",
