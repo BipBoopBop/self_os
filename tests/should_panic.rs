@@ -8,7 +8,7 @@ use self_os::{QemuExitCode, exit_qemu, serial_println, serial_print};
 #[no_mangle]
 pub extern "C" fn _start() -> ! {
     should_fail();
-    serial_println!("{}", "[test did not panic]".fg(red()));    
+    serial_println!("{}", "[test did not panic]".fg(red()));
     exit_qemu(QemuExitCode::Failed);
 
     loop{}
