@@ -12,12 +12,11 @@ pub extern "C" fn _start() -> ! {
     println!("Hello World {}", "!");
     self_os::init();
 
-    fn stack_overflow() {
-        stack_overflow();
-    }
+    use x86_64::registers::control::Cr3;
 
-    // stack_overflow();
-
+    let (level_4_page_table, _) = Cr3::read();
+    println!("Level 4 page table at: {:?}", level_4_page_table.start_address());
+    
     #[cfg(test)]
     test_main();
 
