@@ -7,11 +7,14 @@
 use core::panic::PanicInfo;
 use ansi_rgb::{ Foreground, Background, green, red, black, white };
 
+extern crate alloc;
+
 pub mod serial;
 pub mod vga_buffer;
 pub mod interrupts;
 pub mod gdt;
 pub mod memory;
+pub mod allocator;
 
 pub fn init() {
     gdt::init();
